@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Kurskalender</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="masthead">
+        <div class="kicker">Malmö universitet · HT2026</div>
+        <h1>Kurs&shy;kalender</h1>
+        <div class="accent-rule"></div>
+      </header>
+
+      <section class="panel-trigger">
+        <button id="togglePanel" type="button" class="panel-button" aria-expanded="false" aria-controls="filterPanel">
+          <span>Filter &amp; översikt</span>
+          <span class="panel-button-right">
+            <span id="panelStatus" class="panel-status"></span>
+            <span id="panelCaret" class="panel-caret">+</span>
+          </span>
+        </button>
+      </section>
+
+      <section id="filterPanel" class="filter-panel hidden" aria-label="Filter och översikt">
+        <div class="stat-row">
+          <div class="stat">
+            <div class="stat-value" id="totalEvents">0</div>
+            <div class="stat-label">Händelser</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="totalCourses">0</div>
+            <div class="stat-label">Kurser</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value accent" id="totalDeadlines">0</div>
+            <div class="stat-label">Deadlines</div>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <div class="field">
+            <label for="searchInput">Sök</label>
+            <input id="searchInput" type="search" placeholder="Kurs, typ eller lokal" autocomplete="off" />
+          </div>
+
+          <div class="field">
+            <div class="field-label">Sortera</div>
+            <div class="seg" id="sortSeg">
+              <button type="button" class="seg-opt active" data-sort="date">Datum</button>
+              <button type="button" class="seg-opt" data-sort="course">Kurs</button>
+              <button type="button" class="seg-opt" data-sort="type">Typ</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field-label">Kurser</div>
+            <div id="courseFilters" class="chip-list" aria-label="Kurser"></div>
+          </div>
+
+          <button id="deadlineToggle" type="button" class="deadline-button" aria-pressed="false">
+            <span>Endast deadlines</span>
+            <span class="dot"></span>
+          </button>
+        </div>
+      </section>
+
+      <section class="week-nav" aria-label="Veckonavigation">
+        <button id="prevWeek" type="button" class="nav-button" aria-label="Föregående vecka">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M15 18l-6-6 6-6"></path></svg>
+        </button>
+        <div class="week-label">
+          <strong id="weekRange">Vecka</strong>
+          <span id="weekSub"></span>
+        </div>
+        <button id="nextWeek" type="button" class="nav-button" aria-label="Nästa vecka">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M9 6l6 6-6 6"></path></svg>
+        </button>
+      </section>
+
+      <section class="list-section">
+        <div id="eventList" class="week-view" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
